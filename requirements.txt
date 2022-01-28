@@ -1,0 +1,6 @@
+setuptools~=58.0.4
+spotipy~=2.19.0
+spotdl~=3.9.2
+eyed3~=0.9.6
+pandas~=1.4.0
+-e .
