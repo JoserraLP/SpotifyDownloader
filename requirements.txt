@@ -4,3 +4,4 @@ spotdl~=3.9.2
 eyed3~=0.9.6
 pandas~=1.4.0
 -e .
+pytube~=11.0.2
