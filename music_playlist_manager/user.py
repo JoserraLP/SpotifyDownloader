@@ -2,7 +2,9 @@ from spotipy.oauth2 import SpotifyClientCredentials
 from spotipy.client import Spotify
 
 from music_playlist_manager.secrets import SPOTIPY_CLIENT_SECRET, SPOTIPY_CLIENT_ID
-from music_playlist_manager.constants import DEFAULT_USERNAME
+from music_playlist_manager.constants import DEFAULT_USERNAME, YOUTUBE_PLAYLISTS
+
+from pytube import Playlist
 
 
 class SpotifyUser:
@@ -30,7 +32,7 @@ class SpotifyUser:
 
         :return: list with playlist info
         """
-        # Intilialize playlists list
+        # Initialize playlists list
         playlists = list()
 
         # Retrieve user playlists
@@ -60,3 +62,43 @@ class SpotifyUser:
             })
 
         return playlists
+
+
+class YoutubeUser:
+    """
+    Youtube user class
+    """
+
+    def __init__(self):
+        """
+        YoutubeUser initializer. Retrieve the playlists
+        """
+        self._playlists = list()
+
+    def get_current_playlist(self):
+        """
+        Get playlists from the current Youtube user.
+
+        :return: list with playlist info
+        """
+        youtube_playlists = YOUTUBE_PLAYLISTS
+
+        for name, url in youtube_playlists.items():
+            playlist = Playlist(url)
+
+            playlist_tracks = list()
+            for track in playlist.videos:
+                artists, track_name = track.title.split('-', 1)
+                playlist_tracks.append({
+                    'artists': artists,
+                    'name': track_name
+                })
+
+            self._playlists.append({
+                'url': url,
+                'name': name,
+                'tracks': playlist_tracks,
+                'playlist': playlist
+            })
+
+        return self._playlists

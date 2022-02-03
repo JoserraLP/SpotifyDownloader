@@ -1,12 +1,10 @@
-from os import listdir
-
-import spotdl
 import os
-import sys
+import subprocess
+from os import listdir
+from os.path import isfile, join
+
 import eyed3
 import pandas as pd
-
-from os.path import isfile, join
 
 
 class PlaylistManager:
@@ -26,14 +24,17 @@ class PlaylistManager:
         self._output_dir = output_dir
         self._playlists = playlists
 
-    def download_playlists(self):
+    def download_playlists(self, source: str):
         """
-        Use the "spotdl" library to download each one of the playlists.
+        Use the "spotdl" o "yt-dlp" library to download each one of the playlists.
+
+        :param source: Source of the playlists. Can be 'spotify' or 'youtube'.
+        :type source: str
 
         :return: None
         """
         # Set the working directory to the output directory
-        base_dir = self._output_dir + '/'
+        base_dir = os.path.join(os.getcwd(), self._output_dir, "")
         os.chdir(base_dir)
 
         # Iterate over the different playlists
@@ -41,15 +42,18 @@ class PlaylistManager:
             # Retrieve the playlist name
             playlist_dir = base_dir + playlist['name']
             # If the playlist folder does not exist, create it
-            if not os.path.exists(playlist_dir):
-                os.mkdir(playlist_dir)
+            if not os.path.isdir(playlist_dir):
+                os.makedirs(playlist_dir)
             # Change current directory to the playlist folder
             os.chdir(playlist_dir)
-            # Add the playlist URL to the execution of the spotdl script
-            sys.argv += [playlist['url']]
 
-            # Execute spotdl script
-            spotdl.console_entry_point()
+            if source == 'spotify':
+                # Execute spotdl script
+                subprocess.call(["spotdl", playlist['url']])
+            elif source == 'youtube':
+                # Execute yt-dlp script
+                subprocess.call(["yt-dlp", "-x", "--audio-format", "mp3", "-o", playlist_dir+"/%(title)s.%(ext)s",
+                                 "--no-part", "--embed-metadata", playlist['url']])
 
     def store_not_downloaded_tracks(self):
         """
@@ -61,14 +65,12 @@ class PlaylistManager:
         # Set the working directory to the output directory
         base_dir = self._output_dir + '/'
         os.chdir(base_dir)
-        # Create dict for the unprocessed tracks
-        not_downloaded_tracks = dict()
+        # Create list for the unprocessed tracks
+        not_downloaded_tracks = list()
         # Iterate over the playlists
         for playlist in self._playlists:
-            # Initialize the list of not found tracks per playlist
-            not_downloaded_tracks[playlist['name']] = list()
             # Create the playlist directory
-            playlist_folder = base_dir + playlist['name']
+            playlist_folder = './' + playlist['name']
             # If the folder exists
             if os.path.exists(playlist_folder):
                 # Iterate over the playlist tracks
@@ -85,10 +87,18 @@ class PlaylistManager:
                             existing = True
                     # If the track is not found on the folder
                     if not existing:
-                        # Append track artists and name
-                        not_downloaded_tracks[playlist['name']].append(
-                            {key: playlist_track.get(key) for key in ['artists', 'name']})
+                        # Store its artist, name and playlist it belongs to
+                        not_found_track = {key: playlist_track.get(key) for key in ['artists', 'name']}
+                        not_found_track['playlist'] = playlist['name']
 
-        # TODO process the csv file
-        not_downloaded_tracks = pd.DataFrame.from_dict(not_downloaded_tracks, orient="index")
-        not_downloaded_tracks.to_csv(base_dir+'not_found.csv')
+                        # Append track artists and name
+                        not_downloaded_tracks.append(not_found_track)
+
+        # Create a DataFrame with the info
+        not_downloaded_tracks = pd.DataFrame(not_downloaded_tracks)
+
+        # Reverse the order columns
+        not_downloaded_tracks = not_downloaded_tracks[not_downloaded_tracks.columns.tolist()[::-1]]
+
+        # Store the DataFrame
+        not_downloaded_tracks.to_csv('./not_found.csv')
