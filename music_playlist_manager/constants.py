@@ -31,6 +31,6 @@ YOUTUBE_PLAYLISTS = {
     'Psytrance': 'https://www.youtube.com/playlist?list=PLMWTPx-HK6iO65FaK6Coqt6l2gZAXdFzR',
     'Riddim': 'https://www.youtube.com/playlist?list=PLMWTPx-HK6iOuIAUOrYcylSq22o9zZC33',
     'Salsathon': 'https://www.youtube.com/playlist?list=PLMWTPx-HK6iPAh20ekYK06njn_nbtX0IX',
-    'Techno House': 'https://www.youtube.com/playlist?list=PLMWTPx-HK6iPhSsAxa92FLUUOW5ulZYFF',
+    'Tech House': 'https://www.youtube.com/playlist?list=PLMWTPx-HK6iPhSsAxa92FLUUOW5ulZYFF',
     'Trance': 'https://www.youtube.com/playlist?list=PLMWTPx-HK6iPV5rCH6MM203NOX2SaNGVf',
 }
