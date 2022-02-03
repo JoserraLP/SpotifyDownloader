@@ -1,1 +1,36 @@
 DEFAULT_USERNAME = "joserralp"
+DEFAULT_OUTPUT_DIR = "../../music-downloaded"
+
+# Here you must insert your playlist name and its url
+YOUTUBE_PLAYLISTS = {
+    'Acid House': 'https://www.youtube.com/playlist?list=PLMWTPx-HK6iObnfjYb1U29nnP6gWmhBeY',
+    'Bass House': 'https://www.youtube.com/playlist?list=PLMWTPx-HK6iNedSlxA49DpqutGxqmv0bE',
+    'Big Room': 'https://www.youtube.com/playlist?list=PLMWTPx-HK6iMtr4rR5XXC72-832QxENm0',
+    'Brazilian Bass': 'https://www.youtube.com/playlist?list=PLMWTPx-HK6iOZGkH3FltYY65PRjrK6C-5',
+    'Dark Techno': 'https://www.youtube.com/playlist?list=PLMWTPx-HK6iO4rmQn1t51m9O31ASNY9hL',
+    'Deep House': 'https://www.youtube.com/playlist?list=PLMWTPx-HK6iMxgByIFSrem5vDcb-ZihZz',
+    'Drum & Bass': 'https://www.youtube.com/playlist?list=PLMWTPx-HK6iOK_p8zJngUqgy0uw037p2l',
+    'Drumstep': 'https://www.youtube.com/playlist?list=PLMWTPx-HK6iOOVrY8cXJM_DqjTOU1qLUp',
+    'Dubstep': 'https://www.youtube.com/playlist?list=PLMWTPx-HK6iOp-c5KqVtpJ6ei-nCu4bQl',
+    'Dutch House': 'https://www.youtube.com/playlist?list=PLMWTPx-HK6iMAU45rsZy5hlvmgNpjUrmU',
+    'EDM': 'https://www.youtube.com/playlist?list=PLMWTPx-HK6iNNVJuXRCMv8oMyjYmvZHm-',
+    'Electrostep': 'https://www.youtube.com/playlist?list=PLMWTPx-HK6iOdCZF2gH_20LQeXxgGpNYx',
+    'Electro House': 'https://www.youtube.com/playlist?list=PLMWTPx-HK6iN6pBOf6kZObTpXXN6dU6h-',
+    'Electro Pop': 'https://www.youtube.com/playlist?list=PLMWTPx-HK6iMJvRzJNmTs-v0NXD2S8S2i',
+    'Electro Trap': 'https://www.youtube.com/playlist?list=PLMWTPx-HK6iO2mlacQgnEYZJCkoESLSJY',
+    'Future Bass': 'https://www.youtube.com/playlist?list=PLMWTPx-HK6iOUmLruCThUzmIIZ3s-1l8V',
+    'Future House': 'https://www.youtube.com/playlist?list=PLMWTPx-HK6iPBzmdRSE6Th1akk_U-hbxf',
+    'Hardstyle': 'https://www.youtube.com/playlist?list=PLMWTPx-HK6iM9sSgdgt8WmcR1V7bKbU6V',
+    'Hi-Tech': 'https://www.youtube.com/playlist?list=PLMWTPx-HK6iNCs4GOmJB_3bPx-0OMpO3C',
+    'Hybrid Trap': 'https://www.youtube.com/playlist?list=PLMWTPx-HK6iPy8jS4zUclbiLlH_XAe4Ul',
+    'Jungle Terror': 'https://www.youtube.com/playlist?list=PLMWTPx-HK6iN8_scnTXglKF2D6WGj7DgM',
+    'Melbourne Bounce': 'https://www.youtube.com/playlist?list=PLMWTPx-HK6iMemRy1t3ha42zXoVYCDUeQ',
+    'Minimal Techno': 'https://www.youtube.com/playlist?list=PLMWTPx-HK6iPUi2U15fuJwFOQvInTNOYB',
+    'Moombathon': 'https://www.youtube.com/playlist?list=PLMWTPx-HK6iOw8vYQicTx7Hey392TDFps',
+    'Progressive House': 'https://www.youtube.com/playlist?list=PLMWTPx-HK6iMNTz1koH9HtEhi0dT8beZr',
+    'Psytrance': 'https://www.youtube.com/playlist?list=PLMWTPx-HK6iO65FaK6Coqt6l2gZAXdFzR',
+    'Riddim': 'https://www.youtube.com/playlist?list=PLMWTPx-HK6iOuIAUOrYcylSq22o9zZC33',
+    'Salsathon': 'https://www.youtube.com/playlist?list=PLMWTPx-HK6iPAh20ekYK06njn_nbtX0IX',
+    'Techno House': 'https://www.youtube.com/playlist?list=PLMWTPx-HK6iPhSsAxa92FLUUOW5ulZYFF',
+    'Trance': 'https://www.youtube.com/playlist?list=PLMWTPx-HK6iPV5rCH6MM203NOX2SaNGVf',
+}
