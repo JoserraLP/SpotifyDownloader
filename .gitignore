@@ -28,3 +28,6 @@ MANIFEST
 
 # Secrets file
 music_playlist_manager/secrets.py
+
+# Cache file
+music_playlist_manager/.cache
